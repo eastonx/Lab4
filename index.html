@@ -1,38 +1,33 @@
-<!doctype html> 
-<html> 
-  <head> 
-    <meta charset="utf-8" /> 
-    <meta name="viewport" content="width=device-width,initial-scale=1" /> 
-    <title>Leaflet + Mapbox tiles</title> 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> 
-    <style>html,body,#map{height:100%;margin:0}</style> 
-  </head> 
-  <body> 
-    <div id="map"></div> 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
-<script>
-    // === CONFIGURE THESE ===
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mapbox + Leaflet Example</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>html,body,#map{height:100%;margin:0}#map{min-height:400px}</style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg';
     const MAPBOX_STYLE_ID = 'eastonx/cmlfin8l1005301sn6w969zxv'; // or 'username/styleid'
 
-    // Map initialization
     const map = L.map('map').setView([37.7749, -122.4194], 12);
 
-    // Mapbox tile layer (recommended template for Mapbox Styles API)
-    const mapboxUrl = 'https://api.mapbox.com/styles/v1/eastonx/cmlfin8l1005301sn6w969zxv/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg';
+    // Build the URL with the token embedded so Leaflet actually requests tiles with it
+    const mapboxUrl = `https://api.mapbox.com/styles/v1/${MAPBOX_STYLE_ID}/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
-     L.tileLayer(url, { 
-      tileSize: 512, 
-      zoomOffset: -1, 
-      attribution: '© Mapbox © OpenStreetMap contributors', 
-      maxZoom: 22 
+    L.tileLayer(mapboxUrl, {
+      tileSize: 512,
+      zoomOffset: -1,
+      maxZoom: 22,
+      attribution: '© Mapbox © OpenStreetMap contributors'
+    }).addTo(map);
 
-     }).addTo(map);
-
-    // Example marker
-    L.marker([37.7749, -122.4194]).addTo(map)
-      .bindPopup('San Francisco')
-      .openPopup('A city in the bay area in northern California');
+    L.marker([37.7749, -122.4194]).addTo(map).bindPopup('San Francisco').openPopup();
   </script>
 </body>
 </html>
