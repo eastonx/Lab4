@@ -1,21 +1,16 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lab 4: A Beautiful Basemap</title>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.20.0/mapbox-gl.css" rel="stylesheet"
-  />
-  <style>
-    html, body, #map { height: 100%; margin: 0; padding: 0; }
-    #map { min-height: 400px; }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.20.0/mapbox-gl.js"></script>
-  <script>
+<!doctype html> 
+<html> 
+  <head> 
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,initial-scale=1" /> 
+    <title>Leaflet + Mapbox tiles</title> 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> 
+    <style>html,body,#map{height:100%;margin:0}</style> 
+  </head> 
+  <body> 
+    <div id="map"></div> 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
+<script>
     // === CONFIGURE THESE ===
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg';
     const MAPBOX_STYLE_ID = 'eastonx/cmlfin8l1005301sn6w969zxv'; // or 'username/styleid'
@@ -26,16 +21,13 @@
     // Mapbox tile layer (recommended template for Mapbox Styles API)
     const mapboxUrl = 'https://api.mapbox.com/styles/v1/eastonx/cmlfin8l1005301sn6w969zxv/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg';
 
-    const tiles = L.tileLayer(mapbox/styles/eastonx/cmlfin8l1005301sn6w969zxv, {
-      id: mapbox, cmlfin8l1005301sn6w969zxv,
-      tileSize: 512,
-      zoomOffset: -1,
-      attribution: '© Mapbox © OpenStreetMap contributors',
-      accessToken: pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg,
-      maxZoom: 22
-    });
+     L.tileLayer(url, { 
+      tileSize: 512, 
+      zoomOffset: -1, 
+      attribution: '© Mapbox © OpenStreetMap contributors', 
+      maxZoom: 22 
 
-    tiles.addTo(map);
+     }).addTo(map);
 
     // Example marker
     L.marker([37.7749, -122.4194]).addTo(map)
