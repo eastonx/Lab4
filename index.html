@@ -8,13 +8,20 @@
   <style>html,body,#map{height:100%;margin:0}#map{min-height:400px}</style>
 </head>
 <body>
+  <div id="standard"></div>div>
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZWFzdG9ueCIsImEiOiJjbWx2cmwzNXowYW44M2NvajV5b3RidW8yIn0.jdX15-lrJdiZ7QV3dq5wbg';
     const MAPBOX_STYLE_ID = 'eastonx/cmlfin8l1005301sn6w969zxv'; // or 'username/styleid'
-
+    const standard = L.tilelayer('https://api.mapbox.com/styles/v1/mapbox/standard/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}',
+                                 {
+                                   tileSize: 512,
+                                   xoomOffset: -1,
+                                   maxZoom: 22
+                                 }
+                          );
     const map = L.map('map').setView([37.7749, -122.4194], 12);
 
     // Build the URL with the token embedded so Leaflet actually requests tiles with it
@@ -31,4 +38,5 @@
   </script>
 </body>
 </html>
+
 
