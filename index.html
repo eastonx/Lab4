@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mapbox + Leaflet Example</title>
+  <title>Lab 4: A Beautiful Basemap</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>html,body,#map{height:100%;margin:0}#map{min-height:400px}</style>
 </head>
@@ -18,9 +18,9 @@
     const map = L.map('map').setView([37.7749, -122.4194], 12);
 
     // Build the URL with the token embedded so Leaflet actually requests tiles with it
-    const mapboxUrl = `https://api.mapbox.com/styles/v1/${MAPBOX_STYLE_ID}/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}`;
+    const url = `https://api.mapbox.com/styles/v1/${MAPBOX_STYLE_ID}/tiles/{z}/{x}/{y}?access_token=${MAPBOX_ACCESS_TOKEN}`;
 
-    L.tileLayer(mapboxUrl, {
+    L.tileLayer(url, {
       tileSize: 512,
       zoomOffset: -1,
       maxZoom: 22,
@@ -31,3 +31,4 @@
   </script>
 </body>
 </html>
+
